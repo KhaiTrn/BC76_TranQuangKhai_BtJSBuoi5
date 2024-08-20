@@ -242,6 +242,11 @@
             tabindex="0"
           >
             <h2>Tính tiền cáp</h2>
+            <select id="mySelect" onchange="anHiendiv()">
+              <option value="0">Chọn loại khách hàng</option>
+              <option value="nhaDan">Nhà Dân</option>
+              <option value="DoanhNghiep">Doanh nghiệp</option>
+            </select>
             <div class="mb-3">
               <label for="" class="form-label"></label>
               <input
@@ -262,6 +267,17 @@
                 id="soKenh"
                 aria-describedby="helpId"
                 placeholder="số kênh cao cấp"
+              />
+            </div>
+            <div class="mb-3" id="soKetNoi1" style="display: none">
+              <label for="" class="form-label"></label>
+              <input
+                type="text"
+                class="form-control"
+                name=""
+                id="soKetNoi"
+                aria-describedby="helpId"
+                placeholder="số kết nối"
               />
             </div>
             <button class="btn btn-primary p-2 px-5" id="tinhTienCap">

@@ -100,3 +100,87 @@ document.getElementById("tinhTien").onclick = function () {
     ".ketQua2"
   ).innerHTML = `<p> Họ tên: ${hoTen}; tiền điện : ${tinhTien}`;
 };
+// Bài tập 3
+document.getElementById("tinhThue").onclick = function () {
+  let hoTen = document.getElementById("hovaTen").value;
+  let tongThuNhap = document.getElementById("tongThuNhap").value * 1;
+  let soNguoiPhuThuoc = document.getElementById("soNguoiPhuthuoc").value * 1;
+  let ThuNhapChiuThue = 0;
+  ThuNhapChiuThue = tongThuNhap - 4e6 - soNguoiPhuThuoc * 1.6e6;
+  let tienThuePhaiDong = 0;
+  if (ThuNhapChiuThue < 0) {
+    tienThuePhaiDong = 0;
+  } else if (0 < ThuNhapChiuThue && ThuNhapChiuThue < 60e6) {
+    tienThuePhaiDong = (ThuNhapChiuThue * 5) / 100;
+  } else if (60e6 < ThuNhapChiuThue && ThuNhapChiuThue < 120e6) {
+    tienThuePhaiDong = (ThuNhapChiuThue * 10) / 100;
+  } else if (120e6 < ThuNhapChiuThue && ThuNhapChiuThue < 210e6) {
+    tienThuePhaiDong = (ThuNhapChiuThue * 15) / 100;
+  } else if (210e6 < ThuNhapChiuThue && ThuNhapChiuThue < 384e6) {
+    tienThuePhaiDong = (ThuNhapChiuThue * 20) / 100;
+  } else if (384e6 < ThuNhapChiuThue && ThuNhapChiuThue < 624e6) {
+    tienThuePhaiDong = (ThuNhapChiuThue * 25) / 100;
+  } else if (624e6 < ThuNhapChiuThue && ThuNhapChiuThue < 960e6) {
+    tienThuePhaiDong = (ThuNhapChiuThue * 30) / 100;
+  } else {
+    tienThuePhaiDong = (ThuNhapChiuThue * 35) / 100;
+  }
+  let tienTe = tienThuePhaiDong.toLocaleString("it-IT", {
+    style: "currency",
+    currency: "VND",
+  });
+  document.querySelector(
+    ".ketQua3"
+  ).innerHTML = `<p>Họ tên : ${hoTen}, tiền thuế thu nhập cá nhân : ${tienTe}`;
+};
+// Bài tập 4
+
+const nhaDan = "nhaDan";
+const doanhNghiep = "DoanhNghiep";
+
+function tiendoanhNghiep(soKetNoi) {
+  let tongTienKetNoi = 0;
+  if (soKetNoi <= 10) {
+    tongTienKetNoi = 75;
+    return tongTienKetNoi;
+  } else {
+    let tienKetNoi = 75;
+    for (i = 10; i < soKetNoi; i++) {
+      tienKetNoi += 5;
+      // console.log(tienKetNoi);
+    }
+    tongTienKetNoi = tienKetNoi;
+    return tongTienKetNoi;
+  }
+}
+function anHiendiv() {
+  let x = document.getElementById("mySelect").value;
+  // console.log(x);
+  if (x == doanhNghiep) {
+    document.getElementById("soKetNoi1").style.display = "block";
+  } else {
+    document.getElementById("soKetNoi1").style.display = "none";
+  }
+}
+document.getElementById("tinhTienCap").onclick = function () {
+  let loaiKH = document.getElementById("mySelect").value;
+  let maKH = document.getElementById("maKH").value;
+  let soKenh = document.getElementById("soKenh").value * 1;
+  let soKetNoi = document.getElementById("soKetNoi").value * 1;
+  let tienKNDN = tiendoanhNghiep(soKetNoi);
+  let toTal = 0;
+  if (loaiKH == 0) {
+    alert("xin vui lòng chọn loại khách hàng");
+  } else if (loaiKH == nhaDan) {
+    toTal = 4.5 + 20.5 + 7.5 * soKenh;
+  } else {
+    toTal = 15 + tienKNDN + 50 * soKenh;
+  }
+  let tienTe = toTal.toLocaleString("en-US", {
+    style: "currency",
+    currency: "USD",
+  });
+  document.querySelector(
+    ".ketQua4"
+  ).innerHTML = `Mã Khách Hàng ${maKH}; Tiền cáp: ${tienTe}`;
+};
